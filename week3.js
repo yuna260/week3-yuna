@@ -50,27 +50,21 @@ const data = [
   },
 ];
 
-const circle = svg
+const circles = svg
   .selectAll("circle")
   .data(data)
   .enter()
   .append("circle")
-  .attr("cx", (d) => d.quantity)
-  .attr("cy", (d) => d.details.price)
-  .attr("r", 100)
+  .attr("cx", (d) => d.quantity * 2)
+  .attr("cy", (d) => d.details.price * 30)
+  .attr("r", 10)
   .attr("fill", (d) => d.details.color)
   .attr("stroke", "white");
 
 circles.on("mouseover", function () {
-  d3.select(this)
-    .transition()
-    .duration(500)
-    .attr("r", (d) => d.radius * 2);
+  d3.select(this).transition().duration(500).attr("r", 20);
 });
 
 circles.on("mouseout", function () {
-  d3.select(this)
-    .transition()
-    .duration(500)
-    .attr("r", (d) => d.radius);
+  d3.select(this).transition().duration(500).attr("r", 10);
 });
